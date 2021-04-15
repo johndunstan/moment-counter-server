@@ -1,5 +1,7 @@
 # Moment Counter Server
 
+Backend for the [Moment Counter](https://github.com/johndunstan/moment-counter) project I created during [Nucamp](https://www.nucamp.co/).
+
 ## Tech Stack
 
 NodeJs server using Express, MongoDB, and Mongoose
@@ -18,7 +20,7 @@ In my original state design of Moment Counter, I set state up to handle multiple
 
 ### Details
 
-Give the details of your REST API, the various REST API end points and the operations to be supported on these end points.
+_Give the details of your REST API, the various REST API end points and the operations to be supported on these end points._
 
 #### /lists
 
@@ -42,7 +44,7 @@ Deletes all lists
 
 #### /lists/:listId
 
-A specific list
+A specific list for a user - would have a unique name and a collection of items
 
 ##### get
 
@@ -82,26 +84,46 @@ Removes a specific item from the list
 
 ### Schemas, Design, and Structure
 
-Give any details of the database schema and the structure of your database storage (documents etc.).
+_Give any details of the database schema and the structure of your database storage (documents etc.)._
 
-#### listSchema
+I'm still learning the terms, but my database should have a document that a list of lists. Each list will contain items. Each item will have various properties.
 
+#### List of Lists
+
+Will contain all the lists. Eventually, if users are implemented, each user would have their own List of Lists.
+
+#### List
+
+A list will essentially serve as a container for items. It's primary value with to be able to be named (e.g. 'Pushups to Complete', 'Poms', 'Glasses of Water').
+
+##### listSchema
+
+```
 name: string, required, unique
+```
 
-#### itemSchema
+#### Items
 
+Items will initially have only a isComplete property that is usable. However, I plan to have the schema also include properties for description, date, time, and duration. Initially those values will simply be null.
+
+##### itemSchema
+
+```
 isComplete: bool, required
 descirption: string
 date: date
 time: time
 duration: number
+```
 
 ### Communication
 
-Give the structure of the messages to be communicated between the front-end and the back-end.
+_Give the structure of the messages to be communicated between the front-end and the back-end._
+
+I'm not sure I fully understand
 
 ## Conclusions
 
 ## References
 
-Give references to any material / websites / books etc. relevant to your project
+_Give references to any material / websites / books etc. relevant to your project_
