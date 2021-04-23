@@ -94,7 +94,7 @@ Will contain all the lists. Eventually, if users are implemented, each user woul
 
 #### List
 
-A list will essentially serve as a container for items. It's primary value with to be able to be named (e.g. 'Pushups to Complete', 'Poms', 'Glasses of Water').
+A list will essentially serve as a container for items. It's primary value is to be able to be named (e.g. 'Pushups to Complete', 'Poms', 'Glasses of Water').
 
 ##### listSchema
 
