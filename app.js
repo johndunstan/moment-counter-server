@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const config = require('./config')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -10,7 +11,7 @@ const listsRouter = require('./routes/lists')
 
 const mongoose = require('mongoose')
 
-const url = 'mongodb://localhost:27017/momentcounter'
+const url = config.mongoUrl
 const connect = mongoose.connect(url, {
   useCreateIndex: true,
   useFindAndModify: false,

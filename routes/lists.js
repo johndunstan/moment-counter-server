@@ -10,22 +10,37 @@ listsRouter
     res.setHeader('Content-Type', 'text/plain')
     next()
   })
-  .get((req, res) => {
-    List.find().then((lists) => {
-      res.statusCode = 200
-      res.setHeader('Content-Type', 'application/json')
-      res.json(lists)
-    })
+  .get((req, res, next) => {
+    List.find()
+      .then((lists) => {
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json')
+        res.json(lists)
+      })
+      .catch((err) => next(err))
   })
-  .post((req, res) => {
-    res.end(`Will add the list: ${req.body.name} with much data`)
+  .post((req, res, next) => {
+    List.create(req.body)
+      .then((list) => {
+        console.log('List Created ', list)
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json')
+        res.json(list)
+      })
+      .catch((err) => next(err))
   })
   .put((req, res) => {
     res.statusCode = 403
     res.end('PUT is not supported on /lists')
   })
-  .delete((req, res) => {
-    res.end('Deleted all lists. Are you sure you wanted to do that?!')
+  .delete((req, res, next) => {
+    List.deleteMany()
+      .then((response) => {
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'Application/json')
+        res.json(response)
+      })
+      .catch((err) => next(err))
   })
 
 listsRouter
